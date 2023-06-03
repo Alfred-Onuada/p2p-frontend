@@ -52,6 +52,7 @@ export class TopupComponent {
         },
         error: () => {
           this.error = "Something went wrong";
+          this.loading = false;
 
           setTimeout(() => {
             this.error = "";

@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TopupComponent } from '../topup/topup.component';
+import { TransferComponent } from '../transfer/transfer.component';
 
 interface IGetUserResponse {
   message: string,
@@ -89,13 +90,26 @@ export class ProfileComponent implements OnInit {
       data: {
         email: this.email
       }
-    }).afterClosed().subscribe({
-      next: (data: any) => {
-        if (data) {
-          this.balance = data;
-        }
-      }
     })
+      .afterClosed()
+      .subscribe({
+        next: (data: any) => {
+          if (data) {
+            this.balance = data;
+          }
+        }
+      })
+  }
 
+  transferMoney(): void {
+    this.dialog.open(TransferComponent)
+      .afterClosed()
+      .subscribe({
+        next: (data: any) => {
+          if (data) {
+            this.balance = data;
+          }
+        }
+      })
   }
 }

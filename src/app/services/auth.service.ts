@@ -81,7 +81,6 @@ export class AuthService {
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {
-    // handle this like invalid fields etc.
     return throwError(() => new Error(error.error.message))
   }
 }

@@ -1,0 +1,30 @@
+<div class="container">
+  <h3 class="login-heading">Fill in transfer details below</h3>
+
+  <h4 *ngIf="error">{{ error }}</h4>
+
+  <form onsubmit="return false">
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label>Receiver</mat-label>
+      <input matInput placeholder="@anita" [(ngModel)]="receiver" name="receiver">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input matInput placeholder="0.00" [(ngModel)]="amount" name="amount" type="number">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label>Note</mat-label>
+      <input matInput placeholder="Happy holidays" [(ngModel)]="note" name="note">
+    </mat-form-field>
+    <br>
+    
+    <button (click)="transfer()" mat-raised-button class="btn" *ngIf="!loading">
+      Transfer
+    </button>
+    <button mat-raised-button class="btn" *ngIf="loading">Loading...</button>
+  </form>
+</div>
