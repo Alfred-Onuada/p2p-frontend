@@ -12,11 +12,11 @@
 }
 
 .top {
-  font-size: 90px;
+  font-size: 11vh;
 }
 
 .bottom {
-  font-size: 120px;
+  font-size: 13vh;
 }
 
 .faded {
@@ -38,4 +38,32 @@
   font-size: 35px;
   color: white !important;
   background-color: black !important;
+}
+
+@media screen and (max-width: 600px) {
+  .cta-btns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    height: 50px;
+    padding: 5px 65px;
+    font-size: 20px;
+    margin: 15px 0px;
+  }
+
+  .top {
+    font-size: 5vh;
+  }
+
+  .bottom {
+    font-size: 9vh;
+    line-height: 9.2vh;
+    text-align: center;
+  }
+  
+  .welcome-text {
+    margin: 20px 0px;
+  }
 }
