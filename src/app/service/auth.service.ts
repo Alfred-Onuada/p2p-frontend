@@ -1,8 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { Observable, catchError, map, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
-import { IAuthResponse } from './interfaces/authResponse';
+import { IAuthResponse } from '../interfaces/authResponse';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { IAuthResponse } from './interfaces/authResponse';
 export class AuthService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   login(email: string, password: string): Observable<string> {
@@ -33,7 +35,27 @@ export class AuthService {
     )
   }
 
-  setTokens(refreshToken: string, accessToken: string): void {
+  rotateTokens(): Observable<null> {
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    if (refreshToken === null) {
+      return of(null);
+    }
+
+    return this.http.post<IAuthResponse>(`${environment.apiUrl}/auth/rotate`, {}, {
+      headers: {
+        authorization: `Bearer ${refreshToken}`
+      }
+    }).pipe(
+      map((response: IAuthResponse): null => {
+        this.setTokens(response.data.accessToken, response.data.refreshToken)
+        return null
+      }),
+      catchError(() => of(null))
+    )
+  }
+
+  setTokens(accessToken: string, refreshToken: string): void {
     localStorage.setItem('accessToken', accessToken);
     localStorage.setItem('refreshToken', refreshToken);
   }

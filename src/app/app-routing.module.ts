@@ -6,6 +6,7 @@ import { ProfileComponent } from './profile/profile.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
+  // implement guards
   { path: 'profile', component: ProfileComponent }
 ];
 
