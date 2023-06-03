@@ -35,6 +35,26 @@ export class AuthService {
     )
   }
 
+  register(email: string, password: string, firstName: string, lastName: string, username: string): Observable<string> {
+    return this.http.post<IAuthResponse>(
+      `${environment.apiUrl}/auth/register`,
+      { email, password, firstName, lastName, username },
+      {
+        headers: { 
+          "Content-Type": "application/json",
+        }
+      }
+    )
+    .pipe(
+      map((response: IAuthResponse): string => {
+        this.setTokens(response.data.accessToken, response.data.refreshToken);
+
+        return response.message;
+      }),
+      catchError(this.handleError)
+    )
+  }
+
   rotateTokens(): Observable<null> {
     const refreshToken = localStorage.getItem('refreshToken');
 

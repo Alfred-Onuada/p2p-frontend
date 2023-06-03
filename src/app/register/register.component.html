@@ -1,0 +1,41 @@
+<div class="container">
+  <h3 class="login-heading">Hello there 👋</h3>
+
+  <h4 *ngIf="error">{{ error }}</h4>
+
+  <form (submit)="register()">
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput placeholder="john" [(ngModel)]="firstName" name="firstName">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput placeholder="doe" [(ngModel)]="lastName" name="lastName">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="john@doe.com" [(ngModel)]="email" name="email">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="johnny" [(ngModel)]="username" name="username">
+    </mat-form-field>
+    <br>
+  
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="********" type="password" [(ngModel)]="password" name="password">
+    </mat-form-field>
+    <br>
+
+    <button mat-raised-button class="btn" *ngIf="!loading">Register</button>
+    <button mat-raised-button class="btn" disabled *ngIf="loading">Loading...</button>
+
+  </form>
+</div>
