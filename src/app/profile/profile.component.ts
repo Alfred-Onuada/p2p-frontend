@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { UserService } from '../service/user.service';
+import { UserService } from '../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IUser } from '../interfaces/user';
-import { AuthService } from '../service/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 interface IGetUserResponse {
