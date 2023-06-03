@@ -1,0 +1,62 @@
+.container {
+  padding: 15px 30px 0px 30px;
+}
+
+.header {
+  padding: 15px 0px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.greeting {
+  font-weight: 400;
+  font-size: 20px;
+  margin: 5px 0px;
+  text-transform: capitalize;
+}
+
+.username {
+  font-weight: 300;
+  font-size: 16px;
+  margin: 0px;
+}
+
+.card {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.balance {
+  margin: 5px 0px;
+  font-size: 45px;
+  font-weight: 400;
+}
+
+.balance-text {
+  font-size: 25px;
+  font-weight: 300;
+  margin: 0px;
+}
+
+.cta-btns {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 30px;
+}
+
+.btn {
+  height: 40px;
+  padding: 5px 55px;
+  width: fit-content;
+  font-size: 20px;
+  color: white !important;
+  background-color: black !important;
+}
+
+.transaction-text {
+  font-size: 28px;
+  font-weight: 400;
+}
