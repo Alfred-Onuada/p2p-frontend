@@ -1,0 +1,22 @@
+.container {
+  padding: 50px;
+}
+
+.login-heading {
+  text-align: center;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.input-field {
+  width: 400px;
+}
+
+.btn {
+  height: 40px;
+  padding: 5px 55px;
+  width: fit-content;
+  font-size: 20px;
+  color: white !important;
+  background-color: black !important;
+}

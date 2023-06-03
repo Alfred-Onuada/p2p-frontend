@@ -1,0 +1,25 @@
+<div class="container">
+  <h3 class="login-heading">Hello there 👋</h3>
+
+  <h4 *ngIf="error">{{ error }}</h4>
+
+  <form onsubmit="return false">
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input matInput placeholder="0.00" [(ngModel)]="amount" name="amount" type="number">
+    </mat-form-field>
+    <br>
+    
+    <button (click)="updateRef()" mat-raised-button class="btn"
+      angular4-paystack
+      [ref]="ref"
+      [email]="data.email"
+      [amount]="amount * 100"
+      [channels]="channels"
+      (onClose)="paymentCancel()"
+      (callback)="paymentDone($event)"
+      >
+      {{ loading ? 'Loading...' : 'Topup' }}
+    </button>
+  </form>
+</div>

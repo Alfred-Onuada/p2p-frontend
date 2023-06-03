@@ -8,6 +8,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { IUser } from '../interfaces/user';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { TopupComponent } from '../topup/topup.component';
 
 interface IGetUserResponse {
   message: string,
@@ -18,18 +20,26 @@ interface IGetUserResponse {
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  imports: [CommonModule, MatCardModule, MatButtonModule, NgxSkeletonLoaderModule]
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    NgxSkeletonLoaderModule,
+    MatDialogModule
+  ]
 })
 export class ProfileComponent implements OnInit {
   pageIsLoading: boolean = true;
   balance: number = 0;
   firstName: string = "";
   username: string = "";
+  email: string = "";
 
   constructor (
     private userService: UserService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -69,7 +79,23 @@ export class ProfileComponent implements OnInit {
     this.balance = data.walletBalance;
     this.firstName = data.firstName;
     this.username = data.username;
+    this.email = data.email;
 
     this.pageIsLoading = false;
+  }
+
+  addMoney(): void {
+    this.dialog.open(TopupComponent, {
+      data: {
+        email: this.email
+      }
+    }).afterClosed().subscribe({
+      next: (data: any) => {
+        if (data) {
+          this.balance = data;
+        }
+      }
+    })
+
   }
 }
